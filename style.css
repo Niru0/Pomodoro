@@ -1,0 +1,51 @@
+body,html{
+margin:0;
+padding:0;
+height:100%;
+display:fles;
+justify-content: center;
+align-items: center;
+background-color: #e5c29f;
+font-family: 'Ariel',sans-serif;
+}
+.app{
+text-align: center;
+width:300px;
+}
+
+.timer{
+    border: 1px black solid;
+    border-radius: 50%;
+    font-size: 4rem;
+    margin: 20px 0;;
+ 
+    
+}
+.button{
+    padding:10px 20px;
+    margin: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.streak{
+    font-weight: bold;
+    margin-top: 20px;
+}
+.land{
+    position: relative;
+    width: 100px;
+    height:250px;
+    background:#a36b45;
+    border-radius: 20px;
+    overflow: hidden;
+    margin:20px 0;
+}
+
+.water{
+position:absolute;
+bottom:0;
+width:100%;
+height:0%;
+background-color: #4db8ff;
+transition: height 1s easy-out;
+}
