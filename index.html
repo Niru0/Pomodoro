@@ -1,42 +1,40 @@
-<html>
-    <head>
-        <title>Pomodoro</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pomodoro Timer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>⏳ POMODORO</h1>
+  <button id="startBtn">START</button>
 
-     
-        <h1 class="one">⏳ POMODORO</h1>
-      
-        
-        <button id="startBtn">START</button>
-      
-       
-        <div id="appContent" class="hidden">
-          <div id="inputBox" class="hidden">
-            <label>Focus Time (mins): <input type="number" id="focusInput"></label><br/>
-            <label>Break Time (mins): <input type="number" id="breakInput"></label><br/>
-            <label>Revision Time (mins): <input type="number" id="reviseInput"></label><br/>
-            <button id="submitTimes">Submit</button>
-          </div>
-      
-          <div id="timerSection" class="hidden">
-            <div id="timerCircle">00:00</div>
-            <p id="phaseLabel">Focus</p>
-            <button id="nextBtn" class="hidden">Next</button>
-          </div>
-      
-          <div id="focusReport" class="hidden">
-            <p>🎯 Session Focus Time: <span id="focusTimeResult">0</span> mins</p>
-            <p>📊 Total Focus Time (All Sessions): <span id="totalFocusTime">0</span> mins</p>
-          </div>
-        </div>
-      
-        <script src="script.js"></script>
-      </body>
-      
-    <script src="script.js"></script>
-        
-       
-    </body>
+  <div id="appContent" class="hidden">
+    <div id="inputBox">
+      <input type="number" id="focusInput" placeholder="Focus Time (mins)">
+      <input type="number" id="breakInput" placeholder="Break Time (mins)">
+      <input type="number" id="reviseInput" placeholder="Revision Time (mins)">
+      <button id="submitTimes">Submit</button>
+    </div>
+
+    <div id="timerSection" class="hidden">
+      <div id="timerWrapper">
+        <div id="timerCircle">00:00</div>
+      </div>
+      <p id="phaseLabel">Focus</p>
+      <div id="controls">
+        <button id="startControl">Start</button>
+        <button id="pauseControl">Pause</button>
+        <button id="resetControl">Reset</button>
+      </div>
+    </div>
+
+    <div id="focusReport" class="hidden">
+      <p>🎯 Focus Time: <span id="focusTimeResult">0</span> mins</p>
+      <p>📊 Total Focus Time: <span id="totalFocusTime">0</span> mins</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
