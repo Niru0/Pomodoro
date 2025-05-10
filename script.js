@@ -4,7 +4,7 @@ const inputBox = document.getElementById("inputBox");
 const submitTimes = document.getElementById("submitTimes");
 
 const timerSection = document.getElementById("timerSection");
-const timerCircle = document.getElementById("timerCircle");
+const timerText = document.getElementById("timerText");
 const phaseLabel = document.getElementById("phaseLabel");
 
 const focusReport = document.getElementById("focusReport");
@@ -15,12 +15,15 @@ const startControl = document.getElementById("startControl");
 const pauseControl = document.getElementById("pauseControl");
 const resetControl = document.getElementById("resetControl");
 
+const circleTimer = document.getElementById("circleTimer");
+
 let focusTime = 0, breakTime = 0, reviseTime = 0;
 let timeLeft = 0;
 let timer = null;
 let isRunning = false;
 let currentPhase = "focus";
 let totalFocus = 0;
+let fullTime = 0;
 let storedTotalFocus = parseInt(localStorage.getItem("totalFocusMinutes")) || 0;
 
 startBtn.addEventListener("click", () => {
@@ -48,19 +51,34 @@ submitTimes.addEventListener("click", () => {
 
 function startPhase(phase) {
   currentPhase = phase;
-  phaseLabel.textContent = phase.charAt(0).toUpperCase() + phase.slice(1);
 
-  if (phase === "focus") timeLeft = focusTime;
-  else if (phase === "break") timeLeft = breakTime;
-  else if (phase === "revision") timeLeft = reviseTime;
+  if (phase === "focus") {
+    timeLeft = focusTime;
+    fullTime = focusTime;
+    phaseLabel.textContent = "Study";
+  } else if (phase === "break") {
+    timeLeft = breakTime;
+    fullTime = breakTime;
+    phaseLabel.textContent = "Break";
+  } else {
+    timeLeft = reviseTime;
+    fullTime = reviseTime;
+    phaseLabel.textContent = "Revise";
+  }
 
-  updateDisplay(timeLeft);
+  updateDisplay();
+  updateCircle();
 }
 
-function updateDisplay(seconds) {
-  const min = Math.floor(seconds / 60);
-  const sec = seconds % 60;
-  timerCircle.textContent = `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+function updateDisplay() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  timerText.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
+function updateCircle() {
+  const percent = ((fullTime - timeLeft) / fullTime) * 100;
+  circleTimer.style.background = `conic-gradient(#3498db ${percent}%, #ddd ${percent}%)`;
 }
 
 startControl.addEventListener("click", () => {
@@ -69,7 +87,8 @@ startControl.addEventListener("click", () => {
     timer = setInterval(() => {
       if (timeLeft > 0) {
         timeLeft--;
-        updateDisplay(timeLeft);
+        updateDisplay();
+        updateCircle();
       } else {
         clearInterval(timer);
         isRunning = false;
@@ -78,8 +97,8 @@ startControl.addEventListener("click", () => {
           totalFocus += focusTime;
           startPhase("break");
         } else if (currentPhase === "break") {
-          startPhase("revision");
-        } else if (currentPhase === "revision") {
+          startPhase("revise");
+        } else {
           showReport();
         }
       }
@@ -95,12 +114,7 @@ pauseControl.addEventListener("click", () => {
 resetControl.addEventListener("click", () => {
   clearInterval(timer);
   isRunning = false;
-
-  if (currentPhase === "focus") timeLeft = focusTime;
-  else if (currentPhase === "break") timeLeft = breakTime;
-  else if (currentPhase === "revision") timeLeft = reviseTime;
-
-  updateDisplay(timeLeft);
+  startPhase(currentPhase);
 });
 
 function showReport() {

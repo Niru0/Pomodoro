@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Pomodoro Timer</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>⏳ POMODORO</h1>
+  <h1 class="one">⏳ POMODORO</h1>
   <button id="startBtn">START</button>
 
   <div id="appContent" class="hidden">
     <div id="inputBox">
-      <input type="number" id="focusInput" placeholder="Focus Time (mins)">
-      <input type="number" id="breakInput" placeholder="Break Time (mins)">
-      <input type="number" id="reviseInput" placeholder="Revision Time (mins)">
+      <input type="number" id="focusInput" placeholder="Focus Time (mins)" />
+      <input type="number" id="breakInput" placeholder="Break Time (mins)" />
+      <input type="number" id="reviseInput" placeholder="Revision Time (mins)" />
       <button id="submitTimes">Submit</button>
     </div>
 
     <div id="timerSection" class="hidden">
-      <div id="timerWrapper">
-        <div id="timerCircle">00:00</div>
+      <div id="circleTimer">
+        <div id="timerText">00:00</div>
       </div>
-      <p id="phaseLabel">Focus</p>
+      <p id="phaseLabel">Study</p>
       <div id="controls">
         <button id="startControl">Start</button>
         <button id="pauseControl">Pause</button>
@@ -30,8 +30,8 @@
     </div>
 
     <div id="focusReport" class="hidden">
-      <p>🎯 Focus Time: <span id="focusTimeResult">0</span> mins</p>
-      <p>📊 Total Focus Time: <span id="totalFocusTime">0</span> mins</p>
+      <p>🎯 This Session Focus: <span id="focusTimeResult">0</span> mins</p>
+      <p>📊 Total  Time: <span id="totalFocusTime">0</span> mins</p>
     </div>
   </div>
 
