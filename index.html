@@ -5,29 +5,36 @@
     </head>
     <body>
 
-            <div class="app">
-                <div class="timer">
-                    25:00
-                </div>
-              <div>
-                <button id="start">
-                        <h1>START</h1>
-                </button>
-                <button id="pause">
-                        <h1>PAUSE</h1>
-                </button>
-                <button id="reset">
-                        <h1>RESET</h1>
-                </button>
-                </div>
-                
-                <div class ="land">
-                    <div class="water" id="water">
+     
+        <h1 class="one">⏳ POMODORO</h1>
+      
         
-                    </div>
-                </div>
-                <p class="streak">🔥Streak:<span id="streak">0</span> days</p>
-            </div>
+        <button id="startBtn">START</button>
+      
+       
+        <div id="appContent" class="hidden">
+          <div id="inputBox" class="hidden">
+            <label>Focus Time (mins): <input type="number" id="focusInput"></label><br/>
+            <label>Break Time (mins): <input type="number" id="breakInput"></label><br/>
+            <label>Revision Time (mins): <input type="number" id="reviseInput"></label><br/>
+            <button id="submitTimes">Submit</button>
+          </div>
+      
+          <div id="timerSection" class="hidden">
+            <div id="timerCircle">00:00</div>
+            <p id="phaseLabel">Focus</p>
+            <button id="nextBtn" class="hidden">Next</button>
+          </div>
+      
+          <div id="focusReport" class="hidden">
+            <p>🎯 Session Focus Time: <span id="focusTimeResult">0</span> mins</p>
+            <p>📊 Total Focus Time (All Sessions): <span id="totalFocusTime">0</span> mins</p>
+          </div>
+        </div>
+      
+        <script src="script.js"></script>
+      </body>
+      
     <script src="script.js"></script>
         
        
